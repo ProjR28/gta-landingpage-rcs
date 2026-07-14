@@ -1,0 +1,729 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --color-bg: #111117;
+  --color-light: #e5e6e7;
+  --color-accent: #e66461;
+  --color-accent-light: #ffb2c6;
+  --color-yellow: #ffd4a8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Condensed", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-light);
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 6rem;
+  font-weight: 800;
+  letter-spacing: -0.2rem;
+  line-height: 0.8;
+}
+
+p {
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 0.8;
+}
+
+section {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  background-color: var(--color-bg);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Header / Navegação */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 3rem;
+  z-index: 10;
+}
+
+.site-header__logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-light);
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.menu-toggle svg {
+  width: 32px;
+  height: auto;
+}
+
+.site-nav[hidden] {
+  display: none;
+}
+
+/* Seção 1: Hero */
+.hero-img-container,
+.hero-img-container img,
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-img-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(31, 24, 33, 0.05) 0%,
+    rgba(31, 24, 33, 1.5) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 50.25vw;
+  min-width: 177.78vh;
+  min-height: 100vh;
+}
+
+.hero-stage picture,
+.hero-stage .hero-bg-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-bg-main {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cortina cinemática de carregamento */
+.reveal-curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  z-index: 150;
+  pointer-events: none;
+}
+
+.hero-img-logo img {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 36.24%;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.hero-img-person img {
+  position: absolute;
+  top: 31%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+  z-index: 3;
+}
+
+.hero-img-copy {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  will-change: opacity;
+  z-index: 99;
+}
+
+.hero-img-copy p {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+}
+
+.hero-img-copy__scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(229, 230, 231, 0.4);
+  border-radius: 50%;
+}
+
+/* Animação para a seta de cima */
+.hero-img-copy__scroll-icon .path-top {
+  animation: scrollArrowTop 2s infinite ease-in-out;
+}
+
+/* Animação para a seta de baixo com um leve atraso (delay) */
+.hero-img-copy__scroll-icon .path-bottom {
+  animation: scrollArrowBottom 2s infinite ease-in-out;
+  animation-delay: 0.2s;
+}
+
+/* Linha do tempo da seta superior */
+@keyframes scrollArrowTop {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+}
+
+/* Linha do tempo da seta inferior */
+@keyframes scrollArrowBottom {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 0.9;
+  }
+}
+
+.fade-overlay {
+  background-color: #fff;
+  will-change: opacity;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  z-index: 1;
+}
+
+.logo-container {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 150px;
+  z-index: 2;
+}
+
+.overlay-copy {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 2;
+  max-width: 780px;
+}
+
+.overlay-copy h1 {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transform-origin: center 0%;
+  font-size: 5.5rem;
+}
+
+/* Seção 2: Intro */
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.intro__text {
+  max-width: 900px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Seção 3: Showcase (vídeo scrub no desktop / vídeo simples no mobile) */
+/* Torna a seção uma janela fixa para o efeito pinado */
+.showcase {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #111117;
+}
+
+/* Garante o comportamento correto do Canvas */
+.showcase__canvas {
+  display: block;
+}
+
+.showcase__canvas,
+.showcase__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showcase__video {
+  display: none;
+}
+
+.showcase__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(17, 17, 23, 0.85) 0%,
+    rgba(17, 17, 23, 0.4) 45%,
+    rgba(17, 17, 23, 0) 70%
+  );
+}
+
+/* Camadas de Fade Absolutas */
+.showcase__fade-in,
+.showcase__fade-out {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111117;
+  z-index: 4; /* Fica acima de tudo durante a transição */
+  pointer-events: none;
+}
+
+/* O fade-out começa invisível e surge no final */
+.showcase__fade-out {
+  opacity: 0;
+}
+
+/* Wrappers para criar o efeito de revelação do texto de baixo para cima */
+.showcase__copy .text-wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+.showcase__copy h2,
+.showcase__copy p {
+  transform: translateY(100%); /* Começam escondidos abaixo do wrapper */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.showcase__copy {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding-left: 4rem;
+  text-align: left;
+}
+
+.showcase__copy h2 {
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+}
+
+.showcase__copy p {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.3;
+  text-transform: none;
+  text-align: left;
+  color: var(--color-light);
+}
+
+/* Seção 4: CTA final */
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  min-height: 100vh;
+  background-color: #111117;
+}
+
+.cta__canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 23, 0.2) 0%,
+    rgba(17, 17, 23, 0.85) 100%
+  );
+}
+
+.cta__fade-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111117;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cta-wrapper {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: block;
+}
+
+.cta__badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(229, 230, 231, 0.3);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: var(--color-accent-light);
+}
+
+.cta__badge,
+.cta__heading,
+.cta__text,
+.cta__button {
+  transform: translateY(100px); /* Começam deslocados para baixo */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.cta__heading {
+  max-width: 700px;
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+}
+
+.cta__text {
+  max-width: 500px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: none;
+  color: var(--color-light);
+}
+
+.button__label,
+.cta__button svg path {
+  transition:
+    color 0.4s ease,
+    fill 0.4s ease;
+}
+
+.cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  background-color: var(--color-light);
+  color: var(--color-bg);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.cta__button svg {
+  width: 14px;
+  height: auto;
+}
+
+.cta__button svg path {
+  /* Sobrescreve o fill claro do SVG original: sobre o fundo claro do
+     botão, a seta precisa ser escura para ter contraste. */
+  fill: var(--color-bg);
+}
+
+@media (hover: hover) {
+  .cta__button.button--stroke:hover {
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+}
+
+.button--stroke:after {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.button--stroke:after {
+  border: 0.125rem solid var(--color-light);
+  border-radius: 6.25rem;
+  content: "";
+  pointer-events: none;
+}
+
+.button__label {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  gap: 0.9rem;
+  display: inline-flex;
+}
+
+.button--stroke:hover .button__label {
+  color: var(--color-light);
+}
+
+.cta__button:hover svg path {
+  fill: white;
+}
+
+.button__flair {
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.button--stroke .button__flair {
+  transform: scale(0);
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.button__flair:before {
+  aspect-ratio: 1/1;
+  background-color: var(--color-bg);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 170%;
+}
+
+/* Footer */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: none;
+  color: rgba(229, 230, 231, 0.6);
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .hero-img-logo img {
+    width: 62.5%;
+    top: 40%;
+  }
+
+  .hero-img-person img {
+    top: 50%;
+    left: 40%;
+    width: 92%;
+  }
+
+  .hero-stage {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    z-index: 20;
+  }
+
+  .overlay-copy {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .overlay-copy h1 {
+    width: 100%;
+    font-size: 2.8rem;
+    text-wrap: balance;
+  }
+
+  .site-header {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .intro__text {
+    font-size: 2rem;
+  }
+
+  /* Seção 3 no mobile: texto empilhado acima da mídia, sem gradiente
+     sobreposto nem overlay absoluto — layout em fluxo normal, não fixo
+     em 100svh como as demais seções. */
+  /*.showcase {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 1.5rem;
+  }
+
+  .showcase__gradient {
+    display: none;
+  }*/
+
+  .showcase__copy {
+    max-width: 100%;
+    padding-left: 0;
+    text-align: center;
+    align-items: center;
+  }
+
+  .showcase__copy h2,
+  .showcase__copy p {
+    text-align: center;
+  }
+
+  .showcase__copy h2 {
+    font-size: 2.9rem;
+  }
+
+  .showcase__copy p {
+    font-size: 1.3rem;
+    text-wrap: balance;
+  }
+
+  .cta__badge {
+    font-size: 0.85rem;
+  }
+
+  .cta__heading {
+    font-size: 2.7rem;
+  }
+
+  .cta__text {
+    font-size: 1.2rem;
+    text-wrap: balance;
+  }
+
+  .cta__button {
+    font-size: 1.1rem;
+  }
+
+  .site__footer p {
+    font-size: 0.85rem;
+    text-wrap: balance;
+  }
+}

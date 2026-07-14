@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GTA 6 - Landing Page | Rafael Correa</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:," />
+    <script type="importmap">
+      {
+        "imports": {
+          "gsap": "https://esm.sh/gsap@3.12.5",
+          "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
+          "lenis": "https://esm.sh/lenis@1.1.14"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Header / Navegação -->
+    <header class="site-header">
+      <span class="site-header__logo">VI</span>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <svg
+          width="52"
+          height="30"
+          viewBox="0 0 52 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="52" height="9" fill="#E5E6E7" />
+          <rect
+            width="52"
+            height="9"
+            transform="translate(0 21)"
+            fill="#E5E6E7"
+          />
+        </svg>
+      </button>
+
+      <!-- TODO: itens do menu ainda não definidos -->
+      <nav class="site-nav" hidden>
+        <ul class="site-nav__list">
+          <!-- <li><a href="#">Item</a></li> -->
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Seção 1: Hero -->
+    <section class="hero">
+      <!-- Cortina transição inicial -->
+      <div class="reveal-curtain"></div>
+      <div class="hero-img-container">
+        <div class="hero-stage">
+          <!-- Imagem de Fundo responsiva -->
+          <picture>
+            <!-- Se a tela for maior que 768px (Desktop), carrega essa: -->
+            <source media="(min-width: 768px)" srcset="images/hero-bg.jpeg" />
+            <!-- Se for menor (Mobile), carrega automaticamente essa mais leve: -->
+            <img
+              src="images/hero-bg-mobile.jpeg"
+              alt="Hero Background"
+              class="hero-bg-main"
+            />
+          </picture>
+
+          <!-- Logo de Fundo (Exibido apenas no Desktop) -->
+          <div class="hero-img-logo">
+            <img
+              src="images/logo-de-fundo-white.svg"
+              alt="Rafael Correa - Web Designer"
+            />
+          </div>
+
+          <!-- Personagem (Responsivo) -->
+          <div class="hero-img-person">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcset="images/personagem.png"
+              />
+              <img src="images/persona-01-mobile.png" alt="Personagem" />
+            </picture>
+          </div>
+
+          <div class="hero-img-copy">
+            <p>A animação começa agora</p>
+            <span class="hero-img-copy__scroll-icon" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- Adicionada a classe path-top -->
+                <path
+                  class="path-top"
+                  d="M2 5L8 10L14 5"
+                  stroke="#E5E6E7"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <!-- Adicionada a classe path-bottom -->
+                <path
+                  class="path-bottom"
+                  d="M2 9L8 14L14 9"
+                  stroke="#E5E6E7"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  opacity="0.5"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-overlay"></div>
+      <div class="overlay">
+        <svg width="100%" height="100%">
+          <defs>
+            <mask id="logoRevealMask">
+              <rect width="100%" height="100%" fill="white" />
+              <path id="logoMask"></path>
+            </mask>
+          </defs>
+
+          <rect
+            width="100%"
+            height="100%"
+            fill="#111117"
+            mask="url(#logoRevealMask)"
+          />
+        </svg>
+      </div>
+
+      <div class="logo-container"></div>
+
+      <div class="overlay-copy">
+        <h1>
+          Quando design, movimento e código<br />
+          trabalham juntos,<br />
+          o resultado fala por si.
+        </h1>
+      </div>
+    </section>
+
+    <!-- Seção 3 -->
+    <section class="showcase">
+      <div class="showcase__fade-in"></div>
+      <div class="showcase__fade-out"></div>
+
+      <canvas class="showcase__canvas" aria-hidden="true"></canvas>
+      <div class="showcase__gradient"></div>
+
+      <div class="showcase__copy">
+        <div class="text-wrapper"><h2>Não é apenas uma</h2></div>
+        <div class="text-wrapper"><h2>landing page.</h2></div>
+        <div class="text-wrapper">
+          <p>
+            É uma experiência criada para manter a atenção até o último pixel.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 4: CTA final -->
+    <section class="cta">
+      <canvas class="cta__canvas" aria-hidden="true"></canvas>
+      <div class="cta__gradient"></div>
+      <div class="cta__fade-in"></div>
+      <div class="cta-wrapper">
+        <span class="cta__badge">Se esta página chamou sua atenção...</span>
+      </div>
+
+      <div class="cta-wrapper">
+        <h2 class="cta__heading">Ela já cumpriu o seu objetivo.</h2>
+      </div>
+
+      <div class="cta-wrapper">
+        <p class="cta__text">
+          Um bom site faz mais do que apresentar uma empresa.<br />
+          Ele desperta curiosidade, mantém a atenção e transmite valor antes
+          mesmo da primeira conversa.
+        </p>
+      </div>
+
+      <a href="#" class="cta__button button--stroke" data-block="button">
+        <span class="button__flair"></span>
+        <span class="button__label">
+          quero um site assim
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 17 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.2162 0.900873V12.6122C16.2162 12.8511 16.1213 13.0803 15.9524 13.2492C15.7834 13.4182 15.5543 13.5131 15.3153 13.5131C15.0764 13.5131 14.8473 13.4182 14.6783 13.2492C14.5094 13.0803 14.4145 12.8511 14.4145 12.6122V3.07536L1.53874 15.9522C1.3697 16.1213 1.14043 16.2162 0.901374 16.2162C0.662315 16.2162 0.433047 16.1213 0.264006 15.9522C0.0949658 15.7832 0 15.5539 0 15.3148C0 15.0758 0.0949658 14.8465 0.264006 14.6775L13.1409 1.80175H3.60399C3.36507 1.80175 3.13593 1.70683 2.96698 1.53789C2.79803 1.36894 2.70312 1.1398 2.70312 0.900873C2.70312 0.661947 2.79803 0.432806 2.96698 0.26386C3.13593 0.0949133 3.36507 0 3.60399 0H15.3153C15.5543 0 15.7834 0.0949133 15.9524 0.26386C16.1213 0.432806 16.2162 0.661947 16.2162 0.900873Z"
+              fill="#E5E6E7"
+            />
+          </svg>
+        </span>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p class="site-footer__copyright">
+        © 2026 Rafael Correa. Todos os direitos reservados
+      </p>
+      <p class="site-footer__credit">
+        Desenvolvido por Rafael Correa • Web Designer &amp; Desenvolvedor
+        Front-end.
+      </p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
