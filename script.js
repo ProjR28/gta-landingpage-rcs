@@ -5,6 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 document.addEventListener("DOMContentLoaded", () => {
   initHeroIntro();
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // -----------------------------------------------------------------------
-// Smooth scroll 
+// Smooth scroll
 // -----------------------------------------------------------------------
 function initSmoothScroll() {
   const lenis = new Lenis();
@@ -27,7 +28,7 @@ function initSmoothScroll() {
 }
 
 // -----------------------------------------------------------------------
-// Entrada 
+// Entrada
 // -----------------------------------------------------------------------
 function initHeroIntro() {
   const heroLogoImg = document.querySelector(".hero-img-logo img");
@@ -74,12 +75,17 @@ function initHero() {
     fadeOverlay,
     svgOverlay,
     overlayCopy,
-    
+
     initialOverlayScale: currentInitialOverlayScale,
   });
 
+  let lastWidth = window.innerWidth;
+
   // Atualiza tudo se o celular mudar de orientação ou tamanho
   window.addEventListener("resize", () => {
+    if (window.innerWidth === lastWidth) return; // só mudou altura, ignora
+    lastWidth = window.innerWidth;
+
     setupResponsiveOverlay(svgOverlay);
     positionLogoMask();
 
