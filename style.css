@@ -632,15 +632,19 @@ section {
     font-size: 1rem;
   }
 
+  .hero-ima-container {
+    padding: 0 16px;
+  }
+
   .hero-img-logo img {
-    width: 62.5%;
+    width: 70%;
     top: 40%;
   }
 
   .hero-img-person img {
     top: 50%;
     left: 40%;
-    width: 92%;
+    width: 60%;
   }
 
   .hero-stage {
