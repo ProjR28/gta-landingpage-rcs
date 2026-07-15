@@ -45,7 +45,7 @@ p {
 section {
   position: relative;
   width: 100vw;
-  height: 100svh;
+  height: 100vh;
   background-color: var(--color-bg);
   text-align: center;
   overflow: hidden;
@@ -145,7 +145,7 @@ section {
   display: block;
 }
 
-/* Cortina cinemática de carregamento */
+/* Cortina de carregamento */
 .reveal-curtain {
   position: absolute;
   top: 0;
@@ -195,6 +195,7 @@ section {
 .hero-img-copy p {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
+  color: var(--color-light);
 }
 
 .hero-img-copy__scroll-icon {
@@ -303,8 +304,7 @@ section {
   color: var(--color-accent);
 }
 
-/* Seção 3: Showcase (vídeo scrub no desktop / vídeo simples no mobile) */
-/* Torna a seção uma janela fixa para o efeito pinado */
+/* Seção 3 */
 .showcase {
   position: relative;
   width: 100%;
@@ -313,7 +313,6 @@ section {
   background-color: #111117;
 }
 
-/* Garante o comportamento correto do Canvas */
 .showcase__canvas {
   display: block;
 }
@@ -356,16 +355,14 @@ section {
   width: 100%;
   height: 100%;
   background-color: #111117;
-  z-index: 4; /* Fica acima de tudo durante a transição */
+  z-index: 4;
   pointer-events: none;
 }
 
-/* O fade-out começa invisível e surge no final */
 .showcase__fade-out {
   opacity: 0;
 }
 
-/* Wrappers para criar o efeito de revelação do texto de baixo para cima */
 .showcase__copy .text-wrapper {
   overflow: hidden;
   display: block;
@@ -373,7 +370,7 @@ section {
 
 .showcase__copy h2,
 .showcase__copy p {
-  transform: translateY(100%); /* Começam escondidos abaixo do wrapper */
+  transform: translateY(100%);
   opacity: 0;
   will-change: transform, opacity;
 }
@@ -478,7 +475,7 @@ section {
 .cta__heading,
 .cta__text,
 .cta__button {
-  transform: translateY(100px); /* Começam deslocados para baixo */
+  transform: translateY(100px);
   opacity: 0;
   will-change: transform, opacity;
 }
@@ -532,8 +529,6 @@ section {
 }
 
 .cta__button svg path {
-  /* Sobrescreve o fill claro do SVG original: sobre o fundo claro do
-     botão, a seta precisa ser escura para ter contraste. */
   fill: var(--color-bg);
 }
 
@@ -622,6 +617,7 @@ section {
   color: rgba(229, 230, 231, 0.6);
 }
 
+/*Responsividade*/
 @media (max-width: 900px) {
   h1 {
     font-size: 2.5rem;
@@ -644,7 +640,7 @@ section {
   .hero-img-person img {
     top: 50%;
     left: 40%;
-    width: 60%;
+    width: 65%;
   }
 
   .hero-stage {
@@ -673,21 +669,6 @@ section {
   .intro__text {
     font-size: 2rem;
   }
-
-  /* Seção 3 no mobile: texto empilhado acima da mídia, sem gradiente
-     sobreposto nem overlay absoluto — layout em fluxo normal, não fixo
-     em 100svh como as demais seções. */
-  /*.showcase {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 4rem 1.5rem;
-  }
-
-  .showcase__gradient {
-    display: none;
-  }*/
-
   .showcase__copy {
     max-width: 100%;
     padding-left: 0;

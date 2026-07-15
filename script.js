@@ -83,7 +83,7 @@ function initHero() {
 
   // Atualiza tudo se o celular mudar de orientação ou tamanho
   window.addEventListener("resize", () => {
-    if (window.innerWidth === lastWidth) return; // só mudou altura, ignora
+    if (window.innerWidth === lastWidth) return;
     lastWidth = window.innerWidth;
 
     setupResponsiveOverlay(svgOverlay);
@@ -102,21 +102,18 @@ function initHero() {
   });
 }
 
-//função auxiliar para ajustar propriedades físicas no Mobile vs Desktop
+//função auxiliar para Mobile vs Desktop
 function setupResponsiveOverlay(svgOverlay) {
   gsap.set(svgOverlay, { opacity: 0 });
 
   const isMobile = window.innerWidth < 768;
 
   if (isMobile) {
-    // No mobile, precisamos de um multiplicador maior para o SVG sumir totalmente da tela
     currentInitialOverlayScale = 600;
 
-    // Pegamos a posição exata do .logo-container no mobile para achar a porcentagem do transform-origin
     const logoContainer = document.querySelector(".logo-container");
     if (logoContainer) {
       const logoRect = logoContainer.getBoundingClientRect();
-      // O centro do logo em relação à altura total do .overlay (que é 200vh / dobro da viewport)
       const logoCenterY = logoRect.top + logoRect.height / 2;
       const originYPercent = (logoCenterY / (window.innerHeight * 2)) * 100;
 
@@ -158,14 +155,12 @@ function positionLogoMask() {
     `translate(${logoHorizontalPosition}, ${logoVerticalPosition}) scale(${logoScaleFactor})`,
   );
 
-  // Força o GSAP a resetar a escala inicial da overlay baseada no novo dispositivo mapeado
+  // Força o GSAP a resetar a escala inicial da overlay
   const svgOverlay = document.querySelector(".overlay");
   gsap.set(svgOverlay, { scale: currentInitialOverlayScale });
 }
 
-// Cria o ScrollTrigger que pina a hero e conduz toda a transição:
-// fade da logo/copy iniciais -> zoom-out do mask reveal -> fade do
-// overlay branco -> reveal do h1 em gradiente.
+// Cria o ScrollTrigger que pina a hero
 function createHeroScrollTrigger({
   heroImgContainer,
   heroImgLogo,
@@ -227,8 +222,6 @@ function updateMaskZoom(
     initialOverlayScale * Math.pow(1 / initialOverlayScale, normalizedProgress);
 
   // Fade-in: a máscara só começa a aparecer nos primeiros 5% do scroll,
-  // independente de onde a geometria da logo cai no zoom — evita o
-  // problema de "pedaço escuro" toda vez que a arte da logo muda.
   const overlayFadeInThreshold = 0.05;
   const overlayOpacity = Math.min(1, scrollProgress / overlayFadeInThreshold);
 
@@ -280,7 +273,7 @@ function initShowcase() {
   const images = [];
   const airbnbSequence = { frame: 1 };
 
-  // 1. Pré-carregamento das imagens para evitar flashes brancos no scroll
+  // 1. Pré-carregamento das imagens
   let loadedImages = 0;
   for (let i = 1; i <= frameCount; i++) {
     const img = new Image();
@@ -312,14 +305,13 @@ function initShowcase() {
       scrollTrigger: {
         trigger: ".showcase",
         start: "top top",
-        end: `+=${window.innerHeight * 4}px`, // Mantém a duração total do scroll
+        end: `+=${window.innerHeight * 4}px`, 
         pin: true,
-        scrub: 1, // Mantém a rolagem macia
+        scrub: 1,
       },
     });
 
-    // 1. O VÍDEO FLUI DO INÍCIO AO FIM SEM PARAR
-    // Ele dura a timeline inteira (duration: 10) e serve como régua de tempo para os textos
+    // 1. O VÍDEO
     tl.to(
       airbnbSequence,
       {
@@ -330,9 +322,9 @@ function initShowcase() {
         onUpdate: () => renderFrame(Math.ceil(airbnbSequence.frame)),
       },
       0,
-    ); // O "0" força ele a começar exatamente no segundo zero da timeline
+    );
 
-    // 2. FADE-IN INICIAL (Acontece bem no começo, enquanto o vídeo já está rodando)
+    // 2. FADE-IN INICIAL
     tl.to(
       fadeInOverlay,
       {
@@ -341,10 +333,9 @@ function initShowcase() {
         ease: "power1.out",
       },
       0,
-    ); // Começa junto com o vídeo no segundo zero
+    );
 
-    // 3. ENTRADA DOS TEXTOS (Dispara quando o vídeo estiver perto do frame 40)
-    // Como o vídeo dura 10 segundos no total, o segundo 3.0 representa cerca de 30% do progresso
+    // 3. ENTRADA DOS TEXTOS 
     tl.to(
       textElements,
       {
@@ -357,8 +348,7 @@ function initShowcase() {
       3.0,
     );
 
-    // 4. SAÍDA DOS TEXTOS (Dispara quando o vídeo estiver perto do frame 110)
-    // O segundo 7.5 representa cerca de 75% do progresso do vídeo
+    // 4. SAÍDA DOS TEXTOS
     tl.to(
       textElements,
       {
@@ -371,7 +361,7 @@ function initShowcase() {
       7.5,
     );
 
-    // 5. FADE-OUT FINAL (Escurece a tela nos últimos frames do vídeo)
+    // 5. FADE-OUT FINAL
     tl.to(
       fadeOutOverlay,
       {
@@ -380,10 +370,10 @@ function initShowcase() {
         ease: "power1.in",
       },
       8.5,
-    ); // Começa a escurecer no segundo 8.5 e termina junto com o fim do vídeo (segundo 10)
+    ); 
   }
 
-  // 3. Função para renderizar a imagem simulando "object-fit: cover" no canvas
+  // 3. Função para renderizar a imagem
   function renderFrame(index) {
     const img = images[index - 1];
     if (!img) return;
@@ -415,7 +405,7 @@ function initShowcase() {
     context.drawImage(img, drawX, drawY, drawWidth, drawHeight);
   }
 
-  // 4. Garante que o canvas sempre tenha alta definição e preencha a tela
+  // 4. Garante alta definição
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -423,11 +413,10 @@ function initShowcase() {
   }
 }
 
-// Chame a função após o DOM carregar
+// Chama a função após o DOM carregar
 document.addEventListener("DOMContentLoaded", initShowcase);
 
 // Seção 04: CTA
-
 function initCTA() {
   const ctaSection = document.querySelector(".cta");
   const animElements = document.querySelectorAll(
@@ -438,10 +427,10 @@ function initCTA() {
 
   if (!ctaSection) return;
 
-  // Garante que o estado inicial (escondido) esteja aplicado antes do scroll começar
+  // Garante que o estado inicial (escondido)
   gsap.set(animElements, { y: 100, opacity: 0 });
 
-  // 2. EFEITO HOVER FLAIR DINÂMICO (Mouse Tracking)
+  // 2. EFEITO HOVER FLAIR DINÂMICO
   if (button && flair) {
     button.addEventListener("mouseenter", function (e) {
       const rect = button.getBoundingClientRect();
@@ -468,7 +457,7 @@ function initCTA() {
   }
 }
 
-// Inicialize após o carregamento
+// Inicializa após o carregamento
 document.addEventListener("DOMContentLoaded", initCTA);
 
 function initCtaBackground() {
@@ -516,7 +505,7 @@ function initCtaBackground() {
       },
     });
 
-    // 1. Sequência de frames guia a timeline inteira (mesma régua de 10s da seção 3)
+    // 1. Sequência de frames
     tl.to(
       ctaSequence,
       {
@@ -529,7 +518,7 @@ function initCtaBackground() {
       0,
     );
 
-    // 2. Fade-in inicial, evita flash do primeiro frame
+    // 2. Fade-in inicial
     tl.to(
       fadeInOverlay,
       {
@@ -540,7 +529,7 @@ function initCtaBackground() {
       0,
     );
 
-    // 3. Entrada dos textos, sincronizada a ~30% do progresso do vídeo
+    // 3. Entrada dos textos
     tl.to(
       textElements,
       {
