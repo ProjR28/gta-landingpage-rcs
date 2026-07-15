@@ -305,7 +305,7 @@ function initShowcase() {
       scrollTrigger: {
         trigger: ".showcase",
         start: "top top",
-        end: `+=${window.innerHeight * 4}px`, 
+        end: `+=${window.innerHeight * 4}px`,
         pin: true,
         scrub: 1,
       },
@@ -335,7 +335,7 @@ function initShowcase() {
       0,
     );
 
-    // 3. ENTRADA DOS TEXTOS 
+    // 3. ENTRADA DOS TEXTOS
     tl.to(
       textElements,
       {
@@ -370,7 +370,7 @@ function initShowcase() {
         ease: "power1.in",
       },
       8.5,
-    ); 
+    );
   }
 
   // 3. Função para renderizar a imagem
@@ -668,4 +668,18 @@ const buttonElements = document.querySelectorAll('[data-block="button"]');
 
 buttonElements.forEach((buttonElement) => {
   new Button(buttonElement);
+
+  function initWhatsappCTA() {
+    const numeroWhatsapp = "5541998773811";
+    const nomeProjeto = "GTA 6 - Landing Page";
+
+    const mensagem = `Olá, Rafael! Acabei de ver o projeto "${nomeProjeto}" em seu portfólio e gostaria de conversar sobre um projeto semelhante para meu negócio. Poderia me ajudar?`;
+
+    const whatsappUrl = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+
+    const link = document.getElementById("projWhatsapp");
+    if (link) link.setAttribute("href", whatsappUrl);
+  }
+
+  document.addEventListener("DOMContentLoaded", initWhatsappCTA);
 });
